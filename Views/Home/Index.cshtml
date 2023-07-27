@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Kalos Timer";
+}
+
+<script>
+    var socket = null;
+
+    window.onload = connect();
+
+    function connect() {
+        var url = 'wss://' + location.host;
+        socket = new WebSocket(url);
+
+        socket.addEventListener('open', function(event) {
+            console.log('Connected to ' + url);
+            addLog('Connected to ' + url);
+        });
+
+        socket.addEventListener('message', function(event) {
+            console.log(event.data);
+            writeTimer(event.data);
+        });
+    }
+
+    function writeTimer(timeText) {
+        var timerText = document.getElementById('timercount');
+        timerText.innerText = timeText;
+    }
+
+    function resetTimer() {
+        socket.send('Reset');
+    }
+
+    function stopTimer() {
+        socket.send('Stop');
+    }
+
+    function startTimer() {
+        socket.send('Start');
+    }
+
+    function resetAndStartTimer() {
+        socket.send('ResetAndStart')
+    }
+
+</script>
+
+<h3>Time</h3>
+<div id="timercontainer">
+    <p id="timercount" class="timerText"/>
+</div>
+
+<button onclick="startTimer()">Start</button>
+<button onclick="resetTimer()">Reset</button>
+<button onclick="stopTimer()">Stop</button>
+<button onclick="resetAndStartTimer()">Reset & Start</button>
