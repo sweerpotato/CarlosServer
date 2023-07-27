@@ -68,7 +68,6 @@ namespace CarlosServer
             List<byte> webSocketPayload = new(payloadSize);
             byte[] tempMessage = new byte[payloadSize];
 
-            //Starta ny task som läser server
             while (connectionIsAlive)
             {
                 webSocketPayload.Clear();
