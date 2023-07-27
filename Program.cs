@@ -63,10 +63,6 @@ namespace CarlosServer
 
             _ActiveSockets.Add(socket);
 
-            //Fixa för admin, behövs token?
-            string requestRoute = context.Request.Path.ToString();
-            string? token = context.Request.Query["token"];
-
             int payloadSize = 1024;
             bool connectionIsAlive = true;
             List<byte> webSocketPayload = new(payloadSize);

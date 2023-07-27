@@ -13,7 +13,6 @@
 
         socket.addEventListener('open', function(event) {
             console.log('Connected to ' + url);
-            addLog('Connected to ' + url);
         });
 
         socket.addEventListener('message', function(event) {
@@ -50,7 +49,9 @@
     <p id="timercount" class="timerText"/>
 </div>
 
-<button onclick="startTimer()">Start</button>
-<button onclick="resetTimer()">Reset</button>
-<button onclick="stopTimer()">Stop</button>
-<button onclick="resetAndStartTimer()">Reset & Start</button>
+<div class="buttonContainer">
+    <button onclick="startTimer()">Start</button>
+    <button onclick="resetTimer()">Reset</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetAndStartTimer()">Reset & Start</button>
+</div>
